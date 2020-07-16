@@ -1,15 +1,15 @@
-package javaConcepts2;
+package testingThread;
 
-public class ThreadCreate1 extends Thread {
+public class ThreadCreate extends Thread {
 
 	public void run() {
-		System.out.println("Thread started in ThreadCreate1...");
+		System.out.println("Thread started in ThreadCreate...");
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		ThreadCreate1 t1 = new ThreadCreate1();
+		ThreadCreate t1 = new ThreadCreate();
 		t1.run();
 		ThreadCreate2 m2 = new ThreadCreate2();
 		Thread t2 = new Thread(m2);
@@ -39,5 +39,15 @@ public class ThreadCreate1 extends Thread {
 class ThreadCreate2 implements Runnable {
 	public void run() {
 		System.out.println("Thread started in ThreadCreate2...");
+	}
+}
+
+
+class ThreadCreate3 extends Thread{
+	public void run() {
+		System.out.println("task    2 text 1");
+		System.out.println("task    2 text 2");
+		System.out.println("task    2 text 3");
+		
 	}
 }

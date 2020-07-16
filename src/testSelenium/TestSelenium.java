@@ -3,11 +3,18 @@ package testSelenium;
 import java.io.FileNotFoundException;
 
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class TestSelenium {
 
+
+	static WebDriver driver;
+	static WebDriver driver1;
+	static WebDriver driver2;
 	public static void main(String[] args) throws InterruptedException, FileNotFoundException {
 		// TODO Auto-generated method stub
 
@@ -18,33 +25,37 @@ public class TestSelenium {
 		String url = "http://demo.guru99.com/test/delete_customer.php";
 		
 		System.setProperty("webdriver.chrome.driver", "C:/Users/Abdul Hamid Raza/Documents/all-drivers/chromedriver.exe");
-		System.out.println(System.getProperty("user.dir"));
+		System.setProperty("webdriver.ie.driver",     "C:/Users/Abdul Hamid Raza/Documents/all-drivers/IEDriverServer.exe");
+		System.setProperty("webdriver.gecko.driver",  "C:/Users/Abdul Hamid Raza/Documents/all-drivers/geckodriver.exe");
 		
 		ChromeOptions option = new ChromeOptions();
-		option.addArguments("headless");
-		
-		ChromeDriver driver = new ChromeDriver(option);
-		
-		driver.get(url);
-//		driver.findElement(By.name("submit")).click();
+//		option.addArguments("--headless");
 
+		driver = new ChromeDriver(option);
+		driver1 = new FirefoxDriver();
+		driver2 = new InternetExplorerDriver();
+
+		driver.get(url);
+		driver1.get(url);
+		driver2.get(url);
+		Thread.sleep(5000);
+		driver.quit();
+		driver1.quit();
+		driver2.quit();
+		System.exit(0);
 		System.out.println("isAlertPresent: "+isAlertPresent(driver));
 		System.out.println("Code after isAlertPresent test");
-		for(int i=0;i<10;i++) {
-			Thread.sleep(1);
-			System.out.println(i);
-		}
 		
 	}
 	
-	public static boolean isAlertPresent(ChromeDriver driver) {
+	public static boolean isAlertPresent(WebDriver driver3) {
 		try {
-			driver.switchTo().alert();
+			driver3.switchTo().alert();
 			return true;
 			//alert present
 		}
 		catch(NoAlertPresentException ex) {
-			ex.printStackTrace();
+			System.out.println("No alert present");
 			return false;
 			//alert not present
 		}
