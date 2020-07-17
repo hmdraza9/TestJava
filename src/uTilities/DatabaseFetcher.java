@@ -14,7 +14,7 @@ import java.sql.Statement;
 
 public class DatabaseFetcher {
 	
-	public ResultSet testDB(String url, String username, String password, String sqlQuery){
+	public ResultSet executeDbQuery(String url, String username, String password, String sqlQuery, boolean isSelectQuery){
 		
 		ResultSet resultSet = null;
 		
@@ -22,13 +22,13 @@ public class DatabaseFetcher {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				
 				Connection con = DriverManager.getConnection(url,username, password);
-				System.out.println("Connection established");
+//				System.out.println("Connection established");
 				
 				Statement st = con.createStatement();
 
 //			ResultSet result = st.executeQuery("SELECT * FROM price WHERE BOOK_MRP>300;");//sqlQuery
 				
-				if(sqlQuery.contains(" * ")) {
+				if(isSelectQuery) {
 					resultSet = st.executeQuery(sqlQuery);
 				}
 				else {
@@ -42,6 +42,19 @@ public class DatabaseFetcher {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println("SQL operation done.");
 			return resultSet;
-	}	
+	}
+	
+	public void updateDeleteDb(String url, String username, String password, String sqlQuery) {
+		
+		boolean isSelectQuery = false;
+		executeDbQuery(url, username, password, sqlQuery,isSelectQuery);
+	}
+	
+	public ResultSet selectFromDb(String url, String username, String password, String sqlQuery) {
+		
+		boolean isSelectQuery = true;
+		return executeDbQuery(url, username, password, sqlQuery,isSelectQuery);
+	}
 }
