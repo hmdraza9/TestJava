@@ -54,8 +54,7 @@ public class SeleniumDatabase {
 		PropertyReaderClass pr = new PropertyReaderClass();
 		String sqlQuery = "SELECT * FROM PRICE";
 		System.out.println(pr.propReader("dbUrl") + pr.propReader("username") + pr.propReader("password"));
-		System.out.println(
-				df.testDB(pr.propReader("dbUrl"), pr.propReader("username"), pr.propReader("password"), sqlQuery));
+		System.out.println(df.testDB(pr.propReader("dbUrl"), pr.propReader("username"), pr.propReader("password"), sqlQuery));
 	}
 
 }

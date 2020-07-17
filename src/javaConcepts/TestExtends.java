@@ -1,5 +1,6 @@
 package javaConcepts;
 
+import org.testng.annotations.Test;
 import java.io.IOException;
 
 public class TestExtends {
@@ -46,6 +47,7 @@ class class2 extends class1{
 
 abstract class testAbstract {
 	
+	@Test
 	public void test1() {
 		
 		System.out.println();

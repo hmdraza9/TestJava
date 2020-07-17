@@ -1,3 +1,9 @@
+
+ /* dbUrl=jdbc:mysql://localhost:3306/world
+ * username=root
+ * password=Test@123
+ * */
+
 package uTilities;
 
 import java.sql.Connection;
@@ -21,7 +27,14 @@ public class DatabaseFetcher {
 				Statement st = con.createStatement();
 
 //			ResultSet result = st.executeQuery("SELECT * FROM price WHERE BOOK_MRP>300;");//sqlQuery
-				resultSet = st.executeQuery(sqlQuery);
+				
+				if(sqlQuery.contains(" * ")) {
+					resultSet = st.executeQuery(sqlQuery);
+				}
+				else {
+					st.executeUpdate(sqlQuery);
+				}
+				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
