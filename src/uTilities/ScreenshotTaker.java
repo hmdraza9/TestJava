@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
@@ -17,6 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class ScreenshotTaker {
 	
 	public static void elementHighlighter(WebDriver driver, WebElement el) throws InterruptedException {
+		
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		elementToCenter(driver, el);
@@ -35,21 +37,26 @@ String scrollElementIntoMiddle = "var viewPortHeight = Math.max(document.documen
 	}
 	
 	public void Snapper(ChromeDriver driver) throws IOException {
-		File scr = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		String ScreenshotFullPath = System.getProperty("user.dir")+"\\Screenshots\\"+folderNameCreator()+"\\"+timeStampAppender()+".png";
+		File scr = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE); String[] array1 = System.getProperty("user.dir").split("\\\\");
+		String ScreenshotFullPath = "C:\\Users\\Abdul Hamid Raza\\Documents\\all-screenshots\\"+Arrays.asList(System.getProperty("user.dir").split("\\\\")).get(array1.length-1)+"\\"+folderNameCreator()+"\\"+timeStampAppender()+".png";
 		FileUtils.copyFile(scr, new File(ScreenshotFullPath));//Save file
 		System.out.println("Screenshot taken"+scr.getName().toString());
 	}
 
+
+	//Arrays.asList(System.getProperty("user.dir").split("\\\\")).get(array1.length-1)
+	//C:\\Users\\Abdul Hamid Raza\\Documents\\all-screenshots\\
+	
+	
 	public void Snapper(WebDriver driver) throws IOException {
-		File scr = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		String ScreenshotFullPath = System.getProperty("user.dir")+"\\Screenshots\\"+folderNameCreator()+"\\"+timeStampAppender()+".png";
+		File scr = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE); String[] array1 = System.getProperty("user.dir").split("\\\\");
+		String ScreenshotFullPath = "C:\\Users\\Abdul Hamid Raza\\Documents\\all-screenshots\\"+Arrays.asList(System.getProperty("user.dir").split("\\\\")).get(array1.length-1)+"\\"+folderNameCreator()+"\\"+timeStampAppender()+".png";
 		FileUtils.copyFile(scr, new File(ScreenshotFullPath));//Save file
 	}
 
 	public void Snapper(WebDriver driver, boolean toPrint) throws IOException {
-		File scr = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		String ScreenshotFullPath = System.getProperty("user.dir")+"\\Screenshots\\"+folderNameCreator()+"\\"+timeStampAppender()+".png";
+		File scr = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE); String[] array1 = System.getProperty("user.dir").split("\\\\");
+		String ScreenshotFullPath = "C:\\Users\\Abdul Hamid Raza\\Documents\\all-screenshots\\"+Arrays.asList(System.getProperty("user.dir").split("\\\\")).get(array1.length-1)+"\\"+folderNameCreator()+"\\"+timeStampAppender()+".png";
 		FileUtils.copyFile(scr, new File(ScreenshotFullPath));//Save file
 		if(toPrint) {
 

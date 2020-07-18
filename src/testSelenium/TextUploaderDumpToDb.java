@@ -18,7 +18,7 @@ import junit.framework.Assert;
 import uTilities.DatabaseFetcher;
 import uTilities.PropertyReaderClass;
 
-public class TextUploaderDump {
+public class TextUploaderDumpToDb {
 
 	static WebDriver driver = null;
 

@@ -1,4 +1,4 @@
-package testNGTestPackage;
+package testNGParallelTest;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +7,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class TestNGParallelTwo {
+public class TestNGParallelSeven {
 
 	
 	WebDriver driver=null;
@@ -58,7 +58,7 @@ public class TestNGParallelTwo {
 		driver.findElement(By.name("btnLogin")).click();
 		System.out.println(driver.getTitle());
 		System.out.println("Thread ID: "+Thread.currentThread().getId());
-		driver.findElement(By.partialLinkText("New Customer".trim())).click();
+		driver.findElement(By.partialLinkText("New Customer")).click();
 		driver.findElement(By.name("name")).sendKeys("test");
 		driver.findElement(By.name("sub")).click();
 		if(TestNGParallelOne.isAlertPresent(driver)) {

@@ -1,14 +1,13 @@
-package testNGTestPackage;
+package testNGParallelTest;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class TestNGParallelOne {
+public class TestNGParallelTwo {
 
 	
 	WebDriver driver=null;
@@ -44,7 +43,7 @@ public class TestNGParallelOne {
 		driver.findElement(By.name("cusid")).sendKeys("11122333");
 		driver.findElement(By.name("inideposit")).sendKeys("5000");
 		driver.findElement(By.name("button2")).click();
-		if(isAlertPresent(driver)) {
+		if(TestNGParallelOne.isAlertPresent(driver)) {
 			driver.switchTo().alert().accept();
 		}
 	}
@@ -59,10 +58,10 @@ public class TestNGParallelOne {
 		driver.findElement(By.name("btnLogin")).click();
 		System.out.println(driver.getTitle());
 		System.out.println("Thread ID: "+Thread.currentThread().getId());
-		driver.findElement(By.partialLinkText("New Customer")).click();
+		driver.findElement(By.partialLinkText("New Customer".trim())).click();
 		driver.findElement(By.name("name")).sendKeys("test");
 		driver.findElement(By.name("sub")).click();
-		if(isAlertPresent(driver)) {
+		if(TestNGParallelOne.isAlertPresent(driver)) {
 			driver.switchTo().alert().accept();
 		}
 	}
@@ -70,19 +69,5 @@ public class TestNGParallelOne {
 	public void tearDown() {
 		driver.quit();
 	}
-	
 
-	public static boolean isAlertPresent(WebDriver driver3) {
-		try {
-			driver3.switchTo().alert();
-			return true;
-			//alert present
-		}
-		catch(NoAlertPresentException ex) {
-			System.out.println("No alert present");
-			return false;
-			//alert not present
-		}
-	}
-	
 }
