@@ -25,7 +25,7 @@ public class ScreenshotTaker {
 		js.executeScript("arguments[0].setAttribute('style', '');", el);
 	}
 	
-	private static void elementToCenter(WebDriver driver, WebElement element) {
+	public static void elementToCenter(WebDriver driver, WebElement element) {
 
 String scrollElementIntoMiddle = "var viewPortHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);"
                                             + "var elementTop = arguments[0].getBoundingClientRect().top;"

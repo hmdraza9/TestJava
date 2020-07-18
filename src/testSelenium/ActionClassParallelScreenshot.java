@@ -1,6 +1,9 @@
 package testSelenium;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,7 +11,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
-public class ActionClassTesting {
+import uTilities.ScreenshotTaker;
+
+public class ActionClassParallelScreenshot{
 
 	static WebDriver driver;
 	
@@ -32,6 +37,8 @@ public class ActionClassTesting {
 		Actions builder = new Actions(driver);
 
 		driver.get(dragDropUrl);
+		
+		Thread.sleep(5000);
 
 		minus_amt_5000_1 = driver.findElement(By.xpath(
 				"//div[@id='products']/div/ul/li[@class='sel4 ui-draggable' and @data-id='1' and @id='credit']"));
@@ -105,7 +112,15 @@ public class ActionClassTesting {
 
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("start-maximized");
+		options.addArguments("--headless");
 		driver = new ChromeDriver(options);
+		
+		Runnable r = new TakeScreenshotWithThread(driver);
+		Thread t1 = new Thread(r);
+		t1.setDaemon(true);
+		t1.start();//NoSuchSessionException
+		
+//		TakeScreenshotWithThread
 		
 		dragAndDropMethod(driver);
 		driver.get("http://the-internet.herokuapp.com/");
@@ -114,4 +129,35 @@ public class ActionClassTesting {
 		
 	}
 
+}
+
+class TakeScreenshotWithThread implements Runnable{
+	
+	WebDriver driver;
+	
+	TakeScreenshotWithThread(WebDriver driver){
+		this.driver = driver;
+	}
+
+	@Override
+	public void run() {
+		ScreenshotTaker st = new ScreenshotTaker();
+		try {
+			for(int i=0;i<10000;i++) {
+				st.Snapper(driver);
+				Thread.sleep(50);
+			}
+			System.out.println("Screenshot done.");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchSessionException p) {
+			// TODO Auto-generated catch block
+			System.out.println("Screenshot done.");
+		}
+		
+	}
 }
