@@ -1,3 +1,8 @@
+/*
+ * insert INTO TextUploaderDump(Title,Text,Posted,Status,Short_Link,Created_Date)
+ * VALUES("TEST TITLE", "TEST TEXT", "03/04/20 1:00:06 AM CST", "Expired", "txt.do/162d0",current_timestamp());
+ */
+
 package testSelenium;
 
 import java.util.ArrayList;
@@ -38,7 +43,7 @@ public class TextUploaderDump {
 		driver.findElement(By.xpath("//input[@class='btn btn-beoro-3' and @type='submit' and @value='Login']")).click();
 		
 		
-//		TableDataTextUploader(driver);
+		TableDataTextUploader(driver);
 		
 		newTestUploader("test", "test");
 
@@ -50,8 +55,8 @@ public class TextUploaderDump {
 
 		try {
 			String dataRecordXpath = "//div/div[2]/table/tbody/tr";
-//			int rowCount = driver.findElements(By.xpath(dataRecordXpath)).size();
-			int rowCount = 2;
+			int rowCount = driver.findElements(By.xpath(dataRecordXpath)).size();
+//			int rowCount = 2;
 			List<String> dataList = new ArrayList<String>();
 			for (int i = 1; i <= rowCount; i++) {
 				dataList.add(driver.findElement(By.xpath(dataRecordXpath + "[" + i + "]/td[1]")).getText());
@@ -66,7 +71,8 @@ public class TextUploaderDump {
 
 				driver.navigate().back();
 			}
-			driver.findElement(By.partialLinkText("Dashboard")).click();
+			driver.get("https://textuploader.com/auth/logout");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			driver.quit();
@@ -91,6 +97,9 @@ public class TextUploaderDump {
 
 	public static void newTestUploader(String title, String text) {
 		System.out.println("Creating new entry and then deletion.");
+		driver.findElement(By.id("username")).sendKeys("tesla2020");
+		driver.findElement(By.id("password")).sendKeys("Jan@2020");
+		driver.findElement(By.xpath("//input[@class='btn btn-beoro-3' and @type='submit' and @value='Login']")).click();
 		driver.findElement(By.xpath("//a[@href='https://textuploader.com/' and @class = 'btn btn-small' and contains(text(),'Create a New Post!')]")).click();
 		driver.findElement(By.id("textdata")).sendKeys(text);
 		driver.findElement(By.id("texttitle")).sendKeys(title);

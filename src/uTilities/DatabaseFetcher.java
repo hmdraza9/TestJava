@@ -14,7 +14,7 @@ import java.sql.Statement;
 
 public class DatabaseFetcher {
 	
-	public ResultSet executeDbQuery(String url, String username, String password, String sqlQuery, boolean isSelectQuery){
+	private ResultSet executeDbQuery(String url, String username, String password, String sqlQuery, boolean isSelectQuery){
 		
 		ResultSet resultSet = null;
 		
