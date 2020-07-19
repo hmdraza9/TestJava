@@ -118,9 +118,7 @@ public class ActionClassParallelScreenshot{
 		Runnable r = new TakeScreenshotWithThread(driver);
 		Thread t1 = new Thread(r);
 		t1.setDaemon(true);
-		t1.start();//NoSuchSessionException
-		
-//		TakeScreenshotWithThread
+		t1.start();
 		
 		dragAndDropMethod(driver);
 		driver.get("http://the-internet.herokuapp.com/");

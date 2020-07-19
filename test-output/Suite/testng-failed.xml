@@ -1,85 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite thread-count="3" parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="3" parallel="tests" name="Test3,4(failed)">
+<suite thread-count="4" parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="4" parallel="tests" name="Test4(failed)">
+    <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="testNGTestPackage.TestNGParallelFour">
+      <class name="testNGParallel.TestNGParallelThreadLocal">
         <methods>
-          <include name="setUp"/>
-          <include name="tearDown"/>
-          <include name="goToNewCust"/>
-          <include name="goToNewAccount"/>
+          <include name="endTest"/>
+          <include name="testSetUp"/>
+          <include name="openGoogle"/>
         </methods>
-      </class> <!-- testNGTestPackage.TestNGParallelFour -->
-      <class name="testNGTestPackage.TestNGParallelThree">
-        <methods>
-          <include name="goToNewAccount"/>
-          <include name="setUp"/>
-          <include name="tearDown"/>
-          <include name="goToNewCust"/>
-        </methods>
-      </class> <!-- testNGTestPackage.TestNGParallelThree -->
+      </class> <!-- testNGParallel.TestNGParallelThreadLocal -->
     </classes>
-  </test> <!-- Test3,4(failed) -->
-  <test thread-count="3" parallel="tests" name="Test5,6(failed)">
+  </test> <!-- Test4(failed) -->
+  <test thread-count="4" parallel="tests" name="Test2(failed)">
+    <parameter name="browser" value="firefox"/>
     <classes>
-      <class name="testNGTestPackage.TestNGParallelFive">
+      <class name="testNGParallel.TestNGParallelThreadLocal">
         <methods>
-          <include name="tearDown"/>
-          <include name="goToNewCust"/>
-          <include name="setUp"/>
+          <include name="endTest"/>
+          <include name="testSetUp"/>
+          <include name="openGoogle"/>
         </methods>
-      </class> <!-- testNGTestPackage.TestNGParallelFive -->
-      <class name="testNGTestPackage.TestNGParallelSix">
-        <methods>
-          <include name="tearDown"/>
-          <include name="goToNewAccount"/>
-          <include name="setUp"/>
-          <include name="goToNewCust"/>
-        </methods>
-      </class> <!-- testNGTestPackage.TestNGParallelSix -->
+      </class> <!-- testNGParallel.TestNGParallelThreadLocal -->
     </classes>
-  </test> <!-- Test5,6(failed) -->
-  <test thread-count="3" parallel="tests" name="Test1,2(failed)">
+  </test> <!-- Test2(failed) -->
+  <test thread-count="4" parallel="tests" name="Test3(failed)">
+    <parameter name="browser" value="firefox"/>
     <classes>
-      <class name="testNGTestPackage.TestNGParallelOne">
+      <class name="testNGParallel.TestNGParallelThreadLocal">
         <methods>
-          <include name="goToNewCust"/>
-          <include name="tearDown"/>
-          <include name="goToNewAccount"/>
-          <include name="setUp"/>
+          <include name="endTest"/>
+          <include name="testSetUp"/>
+          <include name="openGoogle"/>
         </methods>
-      </class> <!-- testNGTestPackage.TestNGParallelOne -->
-      <class name="testNGTestPackage.TestNGParallelTwo">
-        <methods>
-          <include name="setUp"/>
-          <include name="tearDown"/>
-          <include name="goToNewCust"/>
-          <include name="goToNewAccount"/>
-        </methods>
-      </class> <!-- testNGTestPackage.TestNGParallelTwo -->
+      </class> <!-- testNGParallel.TestNGParallelThreadLocal -->
     </classes>
-  </test> <!-- Test1,2(failed) -->
-  <test thread-count="3" parallel="tests" name="Test7,8(failed)">
-    <classes>
-      <class name="testNGTestPackage.TestNGParallelEight">
-        <methods>
-          <include name="goToNewCust"/>
-          <include name="login"/>
-          <include name="tearDown"/>
-          <include name="setUp"/>
-          <include name="goToNewAccount"/>
-        </methods>
-      </class> <!-- testNGTestPackage.TestNGParallelEight -->
-      <class name="testNGTestPackage.TestNGParallelSeven">
-        <methods>
-          <include name="goToNewCust"/>
-          <include name="setUp"/>
-          <include name="tearDown"/>
-          <include name="goToNewAccount"/>
-          <include name="login"/>
-        </methods>
-      </class> <!-- testNGTestPackage.TestNGParallelSeven -->
-    </classes>
-  </test> <!-- Test7,8(failed) -->
+  </test> <!-- Test3(failed) -->
 </suite> <!-- Failed suite [Suite] -->

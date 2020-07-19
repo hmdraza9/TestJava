@@ -3,11 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testSelenium.SeleniumDatabase">
+      <class name="testNGParallel.TestNGParallelThreadLocal">
         <methods>
-          <include name="testDB"/>
+          <include name="endTest"/>
+          <include name="openGUru99"/>
+          <include name="testSetUp"/>
+          <include name="openInCom"/>
+          <include name="openGoogle"/>
         </methods>
-      </class> <!-- testSelenium.SeleniumDatabase -->
+      </class> <!-- testNGParallel.TestNGParallelThreadLocal -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

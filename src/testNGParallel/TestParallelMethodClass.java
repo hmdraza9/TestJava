@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class TestParallelMethodClass1 {
+public class TestParallelMethodClass {
 	
 	//-Dtestng.dtd.http=true
 	WebDriver driver;
