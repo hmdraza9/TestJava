@@ -2,6 +2,7 @@ package testNGParallel;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -9,6 +10,7 @@ import org.testng.annotations.Test;
 
 import uTilities.BrowserFactory;
 import uTilities.DriverFactory;
+import uTilities.LibraryUtils;
 
 public class TestNGParallelThreadLocal {
 
@@ -28,7 +30,8 @@ public class TestNGParallelThreadLocal {
 	public void openGoogle(String search) {
 		driver.get("https://www.google.co.in/");
 		System.out.println("Title-->"+driver.getTitle()+", Window Handle-->"+driver.getWindowHandle());
-		driver.findElement(By.name("q")).sendKeys("search");
+		WebElement searchBox = LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.name("q")), 5);
+		searchBox.sendKeys("search");
 		driver.findElement(By.name("q")).submit();
 	}
 	
