@@ -14,6 +14,11 @@ public class TrimFunction {
 		System.out.println("hi".lines());
 		System.out.println("aa".getBytes());
 		
+
+		String FullName = "Test Name";
+		System.out.println(FullName.substring(0, 4));
+		System.out.println(FullName.substring(5, 9));
+		
 		
 		
 	}

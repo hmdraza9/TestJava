@@ -66,6 +66,11 @@ String[] array1 = System.getProperty("user.dir").split("\\\\");
 			System.out.println("Screenshot taken: "+timeStampAppender()+".png");
 		}
 	}
+	
+	public synchronized void clickWithJS(WebDriver driver, WebElement element) {
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", element);
+	}
 		
 	private String timeStampAppender(){
 		final SimpleDateFormat sdfTime = new SimpleDateFormat("yyMMddHHmmssSSS");

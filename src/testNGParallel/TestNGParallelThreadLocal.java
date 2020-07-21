@@ -15,42 +15,41 @@ import uTilities.LibraryUtils;
 public class TestNGParallelThreadLocal {
 
 	public WebDriver driver = null;
-	
+
 	@BeforeClass
-	@Parameters({"browser"})
+	@Parameters({ "browser" })
 	void testSetUp(String browser) throws InterruptedException {
-		driver = BrowserFactory.createInstance(browser);
-		DriverFactory.getInstance().setDriver(driver);
-		driver = DriverFactory.getInstance().getDriver();
-		System.out.println("In set up, current thread ID: "+Thread.currentThread().getId());
+			driver = BrowserFactory.createInstance(browser);
+			DriverFactory.getInstance().setDriver(driver);
+			driver = DriverFactory.getInstance().getDriver();
+			System.out.println("In set up, current thread ID: " + Thread.currentThread().getId());
 	}
-	
+
 	@Test
-	@Parameters({"search"})
+	@Parameters({ "search" })
 	public void openGoogle(String search) {
 		driver.get("https://www.google.co.in/");
-		System.out.println("Title-->"+driver.getTitle()+", Window Handle-->"+driver.getWindowHandle());
+		System.out.println("Title-->" + driver.getTitle() + ", Window Handle-->" + driver.getWindowHandle());
 		WebElement searchBox = LibraryUtils.waitForElementToBeVisible(driver, driver.findElement(By.name("q")), 5);
 		searchBox.sendKeys("search");
 		driver.findElement(By.name("q")).submit();
 	}
-	
+
 	@Test
 	public void openInCom() {
 		driver.get("https://www.news18.com/entertainment/");
-		System.out.println("Title: "+driver.getTitle()+", Window Handle"+driver.getWindowHandle());
+		System.out.println("Title: " + driver.getTitle() + ", Window Handle" + driver.getWindowHandle());
 	}
-	
+
 	@Test
 	public void openGUru99() {
 		driver.get("https://www.guru99.com/");
-		System.out.println("Title: "+driver.getTitle()+", Window Handle"+driver.getWindowHandle());
+		System.out.println("Title: " + driver.getTitle() + ", Window Handle" + driver.getWindowHandle());
 	}
-	
+
 	@AfterClass
 	public void endTest() {
 		DriverFactory.getInstance().removeDriver();
 	}
-	
-	
+
 }
