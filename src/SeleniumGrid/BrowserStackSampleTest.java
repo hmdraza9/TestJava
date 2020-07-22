@@ -1,4 +1,4 @@
-package BrowserStack;
+package SeleniumGrid;
 
 import java.net.URL;
 
