@@ -116,10 +116,8 @@ public class SeleniumLongsScript {
 					.equals("You have done a dynamic click".trim()));
 
 			WebElement item_5 = driver.findElement(By.id("item-5"));
+			
 			st.clickWithJS(driver, item_5);
-
-			System.out.println(driver.findElement(By.id("simpleLink")).getAttribute("href"));
-			System.out.println(driver.findElement(By.id("dynamicLink")).getAttribute("href"));
 
 			WebElement item_6 = driver.findElement(By.id("item-6"));
 			st.clickWithJS(driver, item_6);

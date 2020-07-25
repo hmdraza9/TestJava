@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class PropertyReaderClass {
 
-	public String propReader(String propKey){
+	public static String propReader(String propKey){
 		// TODO Auto-generated method stub
 
 		Properties pr = new Properties();

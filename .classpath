@@ -36,5 +36,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/Abdul Hamid Raza/Documents/all-jars/mysql-connector-java-8.0.21.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Abdul Hamid Raza/Documents/all-jars/datatable-1.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
