@@ -21,7 +21,6 @@ public class TestSelenium {
 //		PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
 //		System.setOut(out); // this puts everything on a text file
 		
-		
 		String url = "http://demo.guru99.com/test/delete_customer.php";
 		
 		System.setProperty("webdriver.chrome.driver", "C:/Users/Abdul Hamid Raza/Documents/all-drivers/chromedriver.exe");
