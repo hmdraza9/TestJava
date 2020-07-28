@@ -38,7 +38,8 @@ public class SerializableClassExample {
 		System.out.println(b4.i+", "+b4.str);
 		System.out.println(b1.i+", "+b1.str);
 		System.out.println(b.i+", "+b.str);
-		ois.close();		
+		fis.close();
+		ois.close();
 	}
 
 }
