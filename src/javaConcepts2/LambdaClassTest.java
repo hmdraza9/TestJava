@@ -2,6 +2,8 @@ package javaConcepts2;
 
 public class LambdaClassTest {
 
+			//refer: https://www.youtube.com/watch?time_continue=957&v=lIXs4Y8sJCk&feature=emb_logo
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		NewInterface ni = new NewInterface() { //calling class method through anonymous class

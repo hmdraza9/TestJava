@@ -29,7 +29,7 @@ public class WallpaperDownloadClass {
 
 		ChromeOptions option = new ChromeOptions();
 		option.addArguments("start-maximized");
-		option.addArguments("--headless");
+//		option.addArguments("--headless");
 		driver = new ChromeDriver(option);
 
 		driver.get(url);
