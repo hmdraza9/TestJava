@@ -30,23 +30,21 @@ public class TestJSON {
 	public static void main(String[] args) throws IOException, ParseException, InterruptedException {
 		// TODO Auto-generated method stub
 
-				WebDriver driver = null;
-		System.setProperty("webdriver.chrome.driver", "C:/Users/Abdul Hamid Raza//Documents/all-drivers/chromedriver.exe");
-
+		WebDriver driver = null;
+		System.setProperty("webdriver.chrome.driver",
+				"C:/Users/Abdul Hamid Raza//Documents/all-drivers/chromedriver.exe");
 
 		TestJSON ts = new TestJSON();
-		ts.JasonFileRead();		
-		//		ts.testKeysActionsClass(driver);
-		//		ts.listAddToList();
-		//		ts.swapStrings(str1, str2);
-		//		ts.getQuestions(driver);
-		//		ts.edgeBrowserTest(driver);
-				ScreenshotTaker st = new ScreenshotTaker();
-		//		ts.DemoShopElement(driver, st);
-		//		ts.testDemoShop(driver, st);
-		//		ts.testHighlightElementCenter(driver, st);
-				ts.frameTestMethod(driver, st);
-
+		ts.JasonFileRead();
+		// ts.testKeysActionsClass(driver);
+		// ts.listAddToList();
+		// ts.swapStrings(str1, str2);
+		// ts.edgeBrowserTest(driver);
+//				ScreenshotTaker st = new ScreenshotTaker();
+		// ts.DemoShopElement(driver, st);
+		// ts.testDemoShop(driver, st);
+		// ts.testHighlightElementCenter(driver, st);
+//				ts.frameTestMethod(driver, st);
 
 	}
 
@@ -58,15 +56,14 @@ public class TestJSON {
 
 		//
 
-
 		System.out.println("************Elements in main frame**************");
 		List<WebElement> frameElementList12 = new ArrayList<>();
 		frameElementList12 = driver.findElements(By.tagName("a"));
-		System.out.println("Number of elements in this frame: "+frameElementList12.size());
-		for(WebElement frameEl:frameElementList12) {
+		System.out.println("Number of elements in this frame: " + frameElementList12.size());
+		for (WebElement frameEl : frameElementList12) {
 			String elText = "";
 			elText = frameEl.getText();
-			if(elText.length()>0) {
+			if (elText.length() > 0) {
 				System.out.println(elText);
 			}
 		}
@@ -75,40 +72,41 @@ public class TestJSON {
 		List<WebElement> frameList = new ArrayList<>();
 		frameList = driver.findElements(By.tagName("iframe"));
 		System.out.println(frameList.size());
-		int index=0;
-		for(WebElement el:frameList){
+		int index = 0;
+		for (WebElement el : frameList) {
 			String frameName = el.getAttribute("name");
 			index++;
-			System.out.println("frameName: "+frameName);
+			System.out.println("frameName: " + frameName);
 			driver.switchTo().frame(el);
 			List<WebElement> frameElementList = new ArrayList<>();
-			//			frameElementList = driver.findElements(By.cssSelector("*"));
+			// frameElementList = driver.findElements(By.cssSelector("*"));
 			frameElementList = driver.findElements(By.tagName("a"));
-			System.out.println("Number of elements in this frame: "+frameElementList.size());
-			for(WebElement frameEl:frameElementList) {
+			System.out.println("Number of elements in this frame: " + frameElementList.size());
+			for (WebElement frameEl : frameElementList) {
 				String elText = "";
 				elText = frameEl.getText();
-				if(elText.length()>0) {
+				if (elText.length() > 0) {
 					System.out.println(elText);
 				}
 			}
 			int count = 0;
 			count = driver.findElements(By.tagName("img")).size();
-			if(count>0) {
-				System.out.println("Element found in frame: "+index+". "+frameName);
-				//				String value = driver.findElement(By.tagName("img")).getAttribute("src");
-				//				System.out.println("value: "+value);
+			if (count > 0) {
+				System.out.println("Element found in frame: " + index + ". " + frameName);
+				// String value = driver.findElement(By.tagName("img")).getAttribute("src");
+				// System.out.println("value: "+value);
 			}
 			driver.switchTo().parentFrame();
 		}
 		closeBrowser(driver);
 	}
 
-	public void testHighlightElementCenter(WebDriver driver, ScreenshotTaker st) throws IOException, InterruptedException {
+	public void testHighlightElementCenter(WebDriver driver, ScreenshotTaker st)
+			throws IOException, InterruptedException {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("headless");
-		//		options.addArguments("start-maximzed");
-		WebElement el=null;
+		// options.addArguments("start-maximzed");
+		WebElement el = null;
 		driver = new ChromeDriver(options);
 		driver.get("https://www.google.com");
 		el = driver.findElement(By.name("q"));
@@ -127,7 +125,7 @@ public class TestJSON {
 		st.Snapper(driver);
 		String xpathAddToCart = "((//*[contains(text(),'Computing and Internet') and @href='/computing-and-internet'])[2]//following::input[@value='Add to cart'])[1]";
 		String xpathGoToCart = "//a[@href='/cart' and contains(text(),'shopping cart')]";
-		String valueCountry="India";
+		String valueCountry = "India";
 		String xpathEstimate = "//input[@type='submit' and @value='Estimate shipping']";
 		String xpathCheckout = "//button[@type='submit']";
 		driver.findElement(By.xpath(xpathAddToCart)).click();
@@ -140,59 +138,55 @@ public class TestJSON {
 		closeBrowser(driver);
 	}
 
-	public void DemoShopElement(WebDriver driver, ScreenshotTaker st ) throws IOException{		
+	public void DemoShopElement(WebDriver driver, ScreenshotTaker st) throws IOException {
 
 		List<WebElement> list1 = null;
 		List<WebElement> refineList = new ArrayList<>();
 		ChromeOptions co = new ChromeOptions();
 		co.addArguments("disable-infobars", "start-maximized");
 		co.setExperimentalOption("useAutomationExtension", false);
-		co.setExperimentalOption("excludeSwitches",Collections.singletonList("enable-automation"));
+		co.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 		driver = new ChromeDriver(co);
 		driver.get("http://demowebshop.tricentis.com/");
 		st.Snapper(driver);
 		list1 = driver.findElements(By.cssSelector("*"));
-		System.out.println("Element count: "+list1.size());
-		for(WebElement el:list1) {
-			int elTextLength=el.getText().length();
-			if((elTextLength>0)&&(el.isDisplayed())&&(el.isEnabled())){
-				if(!(el.getAttribute("name")==null)){
+		System.out.println("Element count: " + list1.size());
+		for (WebElement el : list1) {
+			int elTextLength = el.getText().length();
+			if ((elTextLength > 0) && (el.isDisplayed()) && (el.isEnabled())) {
+				if (!(el.getAttribute("name") == null)) {
 					refineList.add(el);
-					//					System.out.print("Name tag : "+el.getAttribute("name")+st.spacerMethod(50-(el.getAttribute("name").toString().length())));
-					//					System.out.print("|| ");
-					//					System.out.println("Text: "+el.getText()+st.spacerMethod(50-(el.getText().toString().length()))+"||"+el.getText().toString().length());
+					// System.out.print("Name tag :
+					// "+el.getAttribute("name")+st.spacerMethod(50-(el.getAttribute("name").toString().length())));
+					// System.out.print("|| ");
+					// System.out.println("Text:
+					// "+el.getText()+st.spacerMethod(50-(el.getText().toString().length()))+"||"+el.getText().toString().length());
 				}
 			}
 		}
-		System.out.println("refineList length: "+refineList.size());
+		System.out.println("refineList length: " + refineList.size());
 		closeBrowser(driver);
 	}
 
-	public void edgeBrowserTest(WebDriver driver){
-		System.setProperty("webdriver.chrome.driver", "C:/Users/Abdul Hamid Raza/Documents/all-drivers/chromedriver.exe");
-		//		System.setProperty("webdriver.edge.driver", "C:/Users/Abdul Hamid Raza/Documents/all-drivers/MicrosoftWebDriver.exe");
-		System.setProperty("webdriver.edge.driver", "C:/Users/Abdul Hamid Raza/Documents/all-drivers/MicrosoftWebDriver.exe");
-		//msedgedriver.exe
+	public void edgeBrowserTest(WebDriver driver) {
+		System.setProperty("webdriver.chrome.driver",
+				"C:/Users/Abdul Hamid Raza/Documents/all-drivers/chromedriver.exe");
+		// System.setProperty("webdriver.edge.driver", "C:/Users/Abdul Hamid
+		// Raza/Documents/all-drivers/MicrosoftWebDriver.exe");
+		System.setProperty("webdriver.edge.driver",
+				"C:/Users/Abdul Hamid Raza/Documents/all-drivers/MicrosoftWebDriver.exe");
+		// msedgedriver.exe
 		driver = new EdgeDriver();
-	}
-
-	public void getQuestions(WebDriver driver) throws IOException, InterruptedException {
-		driver.get("https://www.softwaretestingmaterial.com/selenium-quiz/");
-		driver.manage().window().maximize();
-		ScreenshotTaker st = new ScreenshotTaker();
-		st.Snapper(driver);
-		Thread.sleep(5000);
-		driver.quit();
 	}
 
 	public void swapStrings(String str1, String str2) {
 
 		int len1 = str1.length();
-		System.out.println("str1: "+str1+", str2: "+str2);
-		str1=str1+str2; //HamidSabina
-		str2=str1.substring(0, len1);
-		str1=str1.substring(str2.length());
-		System.out.println("str1: "+str1+", str2: "+str2);
+		System.out.println("str1: " + str1 + ", str2: " + str2);
+		str1 = str1 + str2; // HamidSabina
+		str2 = str1.substring(0, len1);
+		str1 = str1.substring(str2.length());
+		System.out.println("str1: " + str1 + ", str2: " + str2);
 
 	}
 
@@ -207,27 +201,26 @@ public class TestJSON {
 		list1.add("f");
 		list1.add("g");
 		list1.add("h");
-		System.out.println("Size of List1: "+list1.size());
+		System.out.println("Size of List1: " + list1.size());
 		list2.add("i");
 		list2.add("j");
 		list2.add("k");
 		list2.add("l");
 		list2.add("m");
-		System.out.println("Size of List2: "+list2.size());
+		System.out.println("Size of List2: " + list2.size());
 		System.out.println("Adding in progress");
 		list1.addAll(list2);
-		System.out.println("Size of List1: "+list1.size());
-		System.out.println("Size of List2: "+list2.size());
+		System.out.println("Size of List1: " + list1.size());
+		System.out.println("Size of List2: " + list2.size());
 		System.out.print("list1: ");
-		for(int i=0;i<list1.size();i++) {
-			System.out.print(list1.get(i)+", ");
+		for (int i = 0; i < list1.size(); i++) {
+			System.out.print(list1.get(i) + ", ");
 		}
 		System.out.println("");
 
-
 		System.out.print("list2: ");
-		for(int i=0;i<list2.size();i++) {
-			System.out.print(list2.get(i)+", ");
+		for (int i = 0; i < list2.size(); i++) {
+			System.out.print(list2.get(i) + ", ");
 		}
 		System.out.println("");
 
@@ -240,22 +233,12 @@ public class TestJSON {
 		String normalText = "normaltext";
 		WebElement searchField = driver.findElement(By.name("q"));
 		Actions builder = new Actions(driver);
-		Action seriesOfActions = builder
-				.moveToElement(searchField)
-				.click()
-				.keyDown(searchField, Keys.SHIFT)
-				.sendKeys(searchField, shiftText)
-				.keyUp(searchField, Keys.SHIFT)
-				.doubleClick(searchField)
-				.build();
+		Action seriesOfActions = builder.moveToElement(searchField).click().keyDown(searchField, Keys.SHIFT)
+				.sendKeys(searchField, shiftText).keyUp(searchField, Keys.SHIFT).doubleClick(searchField).build();
 		seriesOfActions.perform();
 
-		seriesOfActions = builder
-				.moveToElement(searchField)
-				.click()
-				.sendKeys(searchField, normalText)
-				.doubleClick(searchField)
-				.build();
+		seriesOfActions = builder.moveToElement(searchField).click().sendKeys(searchField, normalText)
+				.doubleClick(searchField).build();
 		seriesOfActions.perform();
 	}
 
@@ -265,25 +248,25 @@ public class TestJSON {
 		FileReader reader = new FileReader(file);
 		JSONParser jparser = new JSONParser();
 		Object obj = jparser.parse(reader);
-		//		System.out.println(obj.toString());
+		// System.out.println(obj.toString());
 		JSONArray userList = (JSONArray) obj;
-		//		System.out.println("User list: \n"+userList);
+		// System.out.println("User list: \n"+userList);
 		System.out.println("User list: \n");
-		for(int i=0;i<userList.size();i++) {
+		for (int i = 0; i < userList.size(); i++) {
 			System.out.println(userList.get(i));
 		}
 		System.out.println("\n");
 
-		int arrSize=userList.size();
-		for(int i=0;i<arrSize;i++) {
-			JSONObject users=(JSONObject)userList.get(i);
-			//			System.out.println("User["+i+"]: "+users);
+		int arrSize = userList.size();
+		for (int i = 0; i < arrSize; i++) {
+			JSONObject users = (JSONObject) userList.get(i);
+			// System.out.println("User["+i+"]: "+users);
 			JSONObject user = (JSONObject) users.get("users");
-			//			System.out.println("User: "+user);
-			String username=(String) user.get("username");
-			String password=(String) user.get("password");
-			System.out.println("Username: "+username);
-			System.out.println("Password: "+password+"\n");
+			// System.out.println("User: "+user);
+			String username = (String) user.get("username");
+			String password = (String) user.get("password");
+			System.out.println("Username: " + username);
+			System.out.println("Password: " + password + "\n");
 		}
 	}
 
