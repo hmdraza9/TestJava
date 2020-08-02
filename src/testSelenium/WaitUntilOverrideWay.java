@@ -39,7 +39,7 @@ public class WaitUntilOverrideWay {
 
 		driver.manage().window().maximize();
 
-//		someWindowFunctionsAndReturnTypes(driver, st);
+		someWindowFunctionsAndReturnTypes(driver, st);
 		
 		cssSelectorTestMethod(driver);
 		
@@ -98,7 +98,9 @@ public class WaitUntilOverrideWay {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			driver.close();
 		}
+		driver.switchTo().window(currWind);
 		
 		
 

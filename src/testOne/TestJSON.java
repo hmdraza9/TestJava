@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -35,22 +36,48 @@ public class TestJSON {
 				"C:/Users/Abdul Hamid Raza//Documents/all-drivers/chromedriver.exe");
 
 		TestJSON ts = new TestJSON();
-		ts.JasonFileRead();
+//		ts.JasonFileRead();
 		// ts.testKeysActionsClass(driver);
 		// ts.listAddToList();
 		// ts.swapStrings(str1, str2);
 		// ts.edgeBrowserTest(driver);
-//				ScreenshotTaker st = new ScreenshotTaker();
+//		ScreenshotTaker st = new ScreenshotTaker();
 		// ts.DemoShopElement(driver, st);
 		// ts.testDemoShop(driver, st);
 		// ts.testHighlightElementCenter(driver, st);
-//				ts.frameTestMethod(driver, st);
+//		ts.frameTestMethod(driver, st);
+		ts.cssSelectorframeMethod(driver);
 
+	}
+
+	public void cssSelectorframeMethod(WebDriver driver) {
+		ChromeOptions options = new ChromeOptions();
+//		options.addArguments("--headless");
+		driver = new ChromeDriver(options);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		String frameLocator = "iframe[src*='youtube.com/embed/']";
+
+		driver.get("http://demo.guru99.com/test/guru99home/");
+
+		driver.switchTo().frame(driver.findElement(By.cssSelector(frameLocator)));
+
+		driver.findElement(By.cssSelector("button.ytp-large-play-button")).click();
+
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame(driver.findElement(By.cssSelector(frameLocator)));
+
+		Actions builder = new Actions(driver);
+		Action action = builder.moveToElement(driver.findElement(By.cssSelector("div[class*='html5-video-player']")))
+				.build();
+		action.perform();
+
+		driver.findElement(By.cssSelector("button[aria-label='Pause (k)']")).click();
 	}
 
 	public void frameTestMethod(WebDriver driver, ScreenshotTaker st) {
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("headless");
+		options.addArguments("--headless");
 		driver = new ChromeDriver(options);
 		driver.get("http://demo.guru99.com/test/guru99home/");
 
