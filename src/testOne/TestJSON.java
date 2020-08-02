@@ -41,24 +41,28 @@ public class TestJSON {
 		// ts.listAddToList();
 		// ts.swapStrings(str1, str2);
 		// ts.edgeBrowserTest(driver);
-//		ScreenshotTaker st = new ScreenshotTaker();
+		ScreenshotTaker st = new ScreenshotTaker();
 		// ts.DemoShopElement(driver, st);
 		// ts.testDemoShop(driver, st);
 		// ts.testHighlightElementCenter(driver, st);
 //		ts.frameTestMethod(driver, st);
-		ts.cssSelectorframeMethod(driver);
+		ts.cssSelectorframeMethod(driver, st);
 
 	}
 
-	public void cssSelectorframeMethod(WebDriver driver) {
+	public void cssSelectorframeMethod(WebDriver driver,ScreenshotTaker st) throws IOException {
 		ChromeOptions options = new ChromeOptions();
 //		options.addArguments("--headless");
 		driver = new ChromeDriver(options);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
 		String frameLocator = "iframe[src*='youtube.com/embed/']";
 
 		driver.get("http://demo.guru99.com/test/guru99home/");
+
+		st.Snapper(driver);
+		driver.manage().window().fullscreen();
+		st.Snapper(driver);
 
 		driver.switchTo().frame(driver.findElement(By.cssSelector(frameLocator)));
 
