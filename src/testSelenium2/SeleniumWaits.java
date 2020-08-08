@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class SeleniumWaits {
@@ -21,8 +23,36 @@ public class SeleniumWaits {
 		System.setProperty("webdriver.chrome.driver",
 				"C:/Users/Abdul Hamid Raza//Documents/all-drivers/chromedriver.exe");
 //		raceAroundCond(driver);
-		printTableData(driver);
+//		printTableData(driver);
+		waitFunctions(driver);
 
+	}
+	
+	public static void waitFunctions(WebDriver driver) {
+		String url = "http://the-internet.herokuapp.com/dynamic_controls";
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		driver.get(url);
+		int elementCount = driver.findElements(By.xpath("//div[@id='checkbox']/input")).size();
+		System.out.println("elementCount: "+elementCount);
+		if(elementCount>0) {
+			driver.findElement(By.xpath("//button[contains(text(),'Remove')]")).click();
+		}
+		else{
+			driver.findElement(By.xpath("//button[contains(text(),'Add')]")).click();
+		}
+		
+		driver.findElement(By.xpath("//button[contains(text(),'Add')]")).click();
+		driver.findElement(By.xpath("//button[contains(text(),'Remove')]")).click();
+		
+		driver.findElement(By.xpath("//form[@id='input-example']/button")).click();
+		
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebElement enableDisableTextBox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//form[@id='input-example']/input")));
+		enableDisableTextBox.sendKeys("example text");
+		
+		driver.quit();
 	}
 
 	public static void printTableData(WebDriver driver) throws IOException {

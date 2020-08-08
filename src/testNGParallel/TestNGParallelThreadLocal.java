@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -25,7 +26,13 @@ public class TestNGParallelThreadLocal {
 			System.out.println("In set up, current thread ID: " + Thread.currentThread().getId());
 	}
 
-	@Test
+    @DataProvider(name = "data-provider")
+    public Object[][] dataProviderMethod() {
+        return new Object[][] { { "data one" }, { "data two" } };
+    }
+    
+
+	@Test(dataProvider = "data-provider")
 	@Parameters({ "search" })
 	public void openGoogle(String search) {
 		driver.get("https://www.google.co.in/");
@@ -35,7 +42,7 @@ public class TestNGParallelThreadLocal {
 		driver.findElement(By.name("q")).submit();
 	}
 
-	@Test
+	@Test(dataProvider = "data-provider")
 	public void openInCom() {
 		driver.get("https://www.news18.com/entertainment/");
 		System.out.println("Title: " + driver.getTitle() + ", Window Handle" + driver.getWindowHandle());
